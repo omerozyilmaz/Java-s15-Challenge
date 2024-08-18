@@ -4,5 +4,5 @@ public enum Title {
     JOURNALS,
     MAGAZINES,
     ROMAN,
-    NOVEL,
+    NOVEL, FICTION, NONFICTION, SCIENCE, FANTASY,
 }

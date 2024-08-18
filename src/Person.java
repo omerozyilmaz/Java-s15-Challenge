@@ -1,5 +1,5 @@
 public abstract class Person {
-    private String name;
+    private final String name;
 
     public Person(String name) {
         this.name = name;
@@ -8,5 +8,6 @@ public abstract class Person {
     public String getName() {
         return name;
     }
-    public  abstract String whoYouAre();
+
+    public abstract String whoYouAre();
 }

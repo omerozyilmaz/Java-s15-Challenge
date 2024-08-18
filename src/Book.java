@@ -1,67 +1,72 @@
 import enums.Title;
 
+import java.util.UUID;
+
 public class Book {
-    private int bookId;
+    private String bookId;
     private Author author;
     private String name;
     private Title title;
-    private int price;
     private String status;
     private String edition;
     private String dateOfPurchase;
-    private Reader owner;
+    private Person owner;
 
-    public Book(int bookId, Author author, String name, Title title, int price, String status, String edition, String dateOfPurchase) {
-        this.bookId = bookId;
+    public Book(Author author, String name, Title title, String edition, String dateOfPurchase) {
+        this.bookId = UUID.randomUUID().toString();
         this.author = author;
         this.name = name;
         this.title = title;
-        this.price = price;
-        this.status = "Available now.";
+        this.status = "Available";
         this.edition = edition;
         this.dateOfPurchase = dateOfPurchase;
         this.owner = null;
     }
 
-    public int getBookId() {
+    public String getBookId() {
         return bookId;
     }
 
-    public String getTitle() {
-        return this.name;
-    }
-
     public Author getAuthor() {
-        return this.author;
+        return author;
     }
 
-    public void changeOwner(Reader newOwner) {
+    public String getName() {
+        return name;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void changeOwner(Person newOwner) {
         this.owner = newOwner;
-        updateStatus();
+        this.status = (newOwner == null) ? "Available" : "Checked out";
     }
 
-    private String getOwnerName() {
-        return this.owner != null ? this.owner.getName() : "No owner at the moment.";
-    }
-    protected String getOwnerNameForLibrarian(Librarian librarian, String password) {
-        if (librarian.verifyPassword(password)) {
-            return getOwnerName();
-        }
-        return "Access denied: Incorrect password.";
+    public Person getOwner() {
+        return owner;
     }
 
     public void display() {
-        System.out.println("Book ID: " + this.bookId);
-        System.out.println("Title: " + this.name);
-        System.out.println("Author: " + this.author.getName());
-        System.out.println("Price: " + this.price);
-        System.out.println("Status: " + this.status);
-        System.out.println("Edition: " + this.edition);
-        System.out.println("Date of Purchase: " + this.dateOfPurchase);
-        System.out.println("Owner: " + (this.owner != null ? this.owner.getName() : "No owner at the moment"));
+        System.out.println("Book ID: " + bookId);
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author.getName());
+        System.out.println("Edition: " + edition);
+        System.out.println("Status: " + status);
+        System.out.println("Date of Purchase: " + dateOfPurchase);
+        System.out.println("Owner: " + (owner != null ? owner.getName() : "None"));
     }
 
-    public void updateStatus() {
-        this.status = (owner == null) ? "Available now." : "Not currently available.";
+    public void updateStatus(String newStatus) {
+        this.status = newStatus;
     }
 }

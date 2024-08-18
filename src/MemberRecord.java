@@ -1,41 +1,58 @@
 import enums.Type;
-
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.UUID;
 
-public class MemberRecord {
-    private String  memberId;
+public class MemberRecord extends Reader {
+    private String memberId;
     private Type type;
-    private LocalDate dateOfMemberShip;
-    private int maxBookLimit;
-    private int noBooksIssued;
+    private LocalDate dateOfMembership;
+    private int maxBookLimit = 5;
+    private int noBooksIssued = 0;
 
-    public MemberRecord(String memberId, Type type, LocalDate dateOfMemberShip ) {
-        this.memberId = memberId;
+    public MemberRecord(String name, String memberId, Type type) {
+        super(name);
+        this.memberId = memberId.toLowerCase(Locale.ROOT);
         this.type = type;
-        this.dateOfMemberShip = dateOfMemberShip;
-        this.maxBookLimit = 5;
-        this.noBooksIssued = 0;
+        this.dateOfMembership = LocalDate.now();
     }
-    public String getMember(){
+
+    public String getMemberId() {
         return memberId;
     }
-    public LocalDate getDateOfMemberShip(){
-        return dateOfMemberShip;
+
+    public Type getType() {
+        return type;
     }
 
-    public int getNoBookIssued() {
+    public LocalDate getDateOfMembership() {
+        return dateOfMembership;
+    }
+
+    public int getMaxBookLimit() {
+        return maxBookLimit;
+    }
+
+    public int getNoBooksIssued() {
         return noBooksIssued;
     }
-    public void incBookIssued(){
+
+    public void incrementBooksIssued() {
         if (noBooksIssued < maxBookLimit) {
             noBooksIssued++;
         } else {
-            System.out.println("Book limit reached.");
+            System.out.println("Cannot issue more books. Limit reached.");
         }
     }
-    public void decBookIssued() {
+
+    public void decrementBooksIssued() {
         if (noBooksIssued > 0) {
             noBooksIssued--;
         }
+    }
+
+    @Override
+    public String whoYouAre() {
+        return "I am a Member.";
     }
 }

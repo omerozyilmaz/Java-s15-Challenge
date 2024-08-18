@@ -1,7 +1,5 @@
 package enums;
 
 public enum Type {
-    Student,
-    Teacher,
-    Graduate
+    STUDENT, FACULTY, GRADUATE, Graduate
 }

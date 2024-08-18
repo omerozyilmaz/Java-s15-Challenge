@@ -2,24 +2,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reader extends Person {
-    private List<Book>booksReaden;
+    private List<Book> booksOwned;
 
     public Reader(String name) {
         super(name);
-        this.booksReaden = new ArrayList<>();
+        this.booksOwned = new ArrayList<>();
     }
 
     @Override
     public String whoYouAre() {
-        return "";
-    }
-    public void showBook() {
-        this.booksReaden.stream().forEach(System.out::println);
+        return "I am a Reader.";
     }
 
-//    public String purchaseBook(){
-//
-//    }
+    public void borrowBook(Book book) {
+        booksOwned.add(book);
+        booksOwned.size();
+    }
 
+    public void returnBook(Book book) {
+        booksOwned.remove(book);
+    }
 
+    public List<Book> getBooksOwned() {
+        return booksOwned;
+    }
 }
