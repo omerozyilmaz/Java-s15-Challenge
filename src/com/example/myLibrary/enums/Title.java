@@ -1,4 +1,4 @@
-package enums;
+package com.example.myLibrary.enums;
 
 public enum Title {
     JOURNALS,

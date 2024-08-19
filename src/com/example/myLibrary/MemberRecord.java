@@ -1,7 +1,9 @@
-import enums.Type;
+package com.example.myLibrary;
+
+import com.example.myLibrary.enums.Type;
+
 import java.time.LocalDate;
 import java.util.Locale;
-import java.util.UUID;
 
 public class MemberRecord extends Reader {
     private String memberId;
@@ -37,22 +39,19 @@ public class MemberRecord extends Reader {
         return noBooksIssued;
     }
 
-    public void incrementBooksIssued() {
+    @Override
+    public void borrowBook(Book book) {
         if (noBooksIssued < maxBookLimit) {
+            super.borrowBook(book);
             noBooksIssued++;
         } else {
-            System.out.println("Cannot issue more books. Limit reached.");
-        }
-    }
-
-    public void decrementBooksIssued() {
-        if (noBooksIssued > 0) {
-            noBooksIssued--;
+            System.out.println("Cannot borrow more books. Maximum limit reached.");
         }
     }
 
     @Override
-    public String whoYouAre() {
-        return "I am a Member.";
+    public void returnBook(Book book) {
+        super.returnBook(book);
+        noBooksIssued--;
     }
 }

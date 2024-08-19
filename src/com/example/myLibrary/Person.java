@@ -1,3 +1,5 @@
+package com.example.myLibrary;
+
 public abstract class Person {
     private final String name;
 

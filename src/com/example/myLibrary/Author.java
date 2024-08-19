@@ -1,3 +1,5 @@
+package com.example.myLibrary;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,6 @@ public class Author extends Person {
     }
 
     public List<Book> getBooksWritten() {
-        return booksWritten;
+        return new ArrayList<>(booksWritten);
     }
 }

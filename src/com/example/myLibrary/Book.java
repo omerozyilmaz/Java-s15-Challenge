@@ -1,4 +1,6 @@
-import enums.Title;
+package com.example.myLibrary;
+
+import com.example.myLibrary.enums.Title;
 
 import java.util.UUID;
 
@@ -17,10 +19,8 @@ public class Book {
         this.author = author;
         this.name = name;
         this.title = title;
-        this.status = "Available";
         this.edition = edition;
         this.dateOfPurchase = dateOfPurchase;
-        this.owner = null;
     }
 
     public String getBookId() {
@@ -31,42 +31,55 @@ public class Book {
         return author;
     }
 
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Title getTitle() {
         return title;
     }
 
-    public String getEdition() {
-        return edition;
+    public void setTitle(Title title) {
+        this.title = title;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void changeOwner(Person newOwner) {
-        this.owner = newOwner;
-        this.status = (newOwner == null) ? "Available" : "Checked out";
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public String getDateOfPurchase() {
+        return dateOfPurchase;
+    }
+
+    public void setDateOfPurchase(String dateOfPurchase) {
+        this.dateOfPurchase = dateOfPurchase;
     }
 
     public Person getOwner() {
         return owner;
     }
 
-    public void display() {
-        System.out.println("Book ID: " + bookId);
-        System.out.println("Title: " + title);
-        System.out.println("Author: " + author.getName());
-        System.out.println("Edition: " + edition);
-        System.out.println("Status: " + status);
-        System.out.println("Date of Purchase: " + dateOfPurchase);
-        System.out.println("Owner: " + (owner != null ? owner.getName() : "None"));
-    }
-
-    public void updateStatus(String newStatus) {
-        this.status = newStatus;
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }

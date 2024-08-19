@@ -1,3 +1,5 @@
+package com.example.myLibrary;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +13,11 @@ public class Reader extends Person {
 
     @Override
     public String whoYouAre() {
-        return "I am a Reader.";
+        return "I am a com.example.myLibrary.Reader.";
     }
 
     public void borrowBook(Book book) {
         booksOwned.add(book);
-        booksOwned.size();
     }
 
     public void returnBook(Book book) {
@@ -24,6 +25,6 @@ public class Reader extends Person {
     }
 
     public List<Book> getBooksOwned() {
-        return booksOwned;
+        return new ArrayList<>(booksOwned); // Return a copy to protect encapsulation
     }
 }
