@@ -17,7 +17,7 @@ public class LibraryComputer implements LibraryActions {
 
     @Override
     public void handleLibrarianActions(Library library, Scanner scanner, Librarian librarian) {
-        // Instance değişkenleri burada dolduruluyor
+
         authorsList = library.getAllAuthors();
         membersList = library.getMemberManager().getAllMembers();
 
