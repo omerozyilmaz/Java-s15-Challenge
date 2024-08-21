@@ -15,14 +15,7 @@ public class Library {
         memberSet = new HashSet<>();
         bookInventory = new HashMap<>();
         authorsList = new ArrayList<>();
-        memberManager = new MemberManager(); // MemberManager örneği oluşturuluyor
-    }
-
-    public void addBook(String authorName, String bookName, Title title, String edition, String dateOfPurchase) {
-        Author author = CreateAuthor(authorName);
-        Book book = new Book(author, bookName, title, edition, dateOfPurchase);
-        addBook(book);
-        author.addBook(book);
+        memberManager = new MemberManager();
     }
 
     private Author CreateAuthor(String authorName) {
@@ -35,6 +28,14 @@ public class Library {
         authorsList.add(newAuthor);
         return newAuthor;
     }
+
+    public void addBook(String authorName, String bookName, Title title, String edition, String dateOfPurchase) {
+        Author author = CreateAuthor(authorName);
+        Book book = new Book(author, bookName, title, edition, dateOfPurchase);
+        addBook(book);
+        author.addBook(book);
+    }
+
 
     public List<Author> getAllAuthors() {
         return new ArrayList<>(authorsList);
@@ -55,15 +56,15 @@ public class Library {
     }
 
     public void addMember(MemberRecord member) {
-        memberManager.addMember(member); // Üyeler MemberManager üzerinden ekleniyor
+        memberManager.addMember(member);
     }
 
     public MemberRecord getMemberById(String memberId) {
-        return memberManager.getMemberById(memberId); // Üyeler MemberManager üzerinden alınıyor
+        return memberManager.getMemberById(memberId);
     }
 
     public Set<MemberRecord> getAllMembers() {
-        return memberManager.getAllMembers(); // Tüm üyeler MemberManager'dan alınıyor
+        return memberManager.getAllMembers();
     }
 
     public void displayBooksForLibrarian() {
