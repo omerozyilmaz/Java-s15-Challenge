@@ -52,7 +52,7 @@ public class Main {
             String password = scanner.nextLine();
 
             if (librarian.verifyPassword(password) && librarian.getName().toLowerCase(Locale.ROOT).equals(name)) {
-                libraryComputer.handleLibrarianActions(library, scanner, librarian);
+                libraryComputer.LibrarianActions(library, scanner, librarian);
             } else {
                 System.out.println("Incorrect name or password! Exiting...");
             }
@@ -63,7 +63,7 @@ public class Main {
             MemberRecord member = library.getMemberById(memberId);
 
             if (member != null) {
-                libraryComputer.handleMemberActions(library, scanner, librarian, member);
+                libraryComputer.MemberActions(library, scanner, librarian, member);
             } else {
                 System.out.println("Member not found! Exiting...");
             }

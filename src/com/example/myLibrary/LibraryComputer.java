@@ -16,7 +16,7 @@ public class LibraryComputer implements LibraryActions {
     private Set<MemberRecord> membersList;
 
     @Override
-    public void handleLibrarianActions(Library library, Scanner scanner, Librarian librarian) {
+    public void LibrarianActions(Library library, Scanner scanner, Librarian librarian) {
 
         authorsList = library.getAllAuthors();
         membersList = library.getMemberManager().getAllMembers();
@@ -132,7 +132,7 @@ public class LibraryComputer implements LibraryActions {
     }
 
     @Override
-    public void handleMemberActions(Library library, Scanner scanner, Librarian librarian, MemberRecord member) {
+    public void MemberActions(Library library, Scanner scanner, Librarian librarian, MemberRecord member) {
         while (true) {
             System.out.println("1. List Books");
             System.out.println("2. Borrow a Book");
