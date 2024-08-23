@@ -17,7 +17,7 @@ public class BookInventory {
         return bookInventory.getOrDefault(name, Collections.emptyList());
     }
 
-    // Yeni metod: Tüm envanteri döndüren metod
+
     public Map<String, List<Book>> getAllBooks() {
         return bookInventory;
     }

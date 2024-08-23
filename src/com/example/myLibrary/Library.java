@@ -6,43 +6,40 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Library {
-    private Set<MemberRecord> memberSet;
     private Map<String, List<Book>> bookInventory;
     private List<Author> authorsList;
     private MemberManager memberManager;
 
     public Library() {
-        memberSet = new HashSet<>();
         bookInventory = new HashMap<>();
         authorsList = new ArrayList<>();
         memberManager = new MemberManager();
     }
 
-    private Author CreateAuthor(String authorName) {
-        for (Author author : authorsList) {
-            if (author.getName().equals(authorName)) {
-                return author;
-            }
-        }
-        Author newAuthor = new Author(authorName);
-        authorsList.add(newAuthor);
-        return newAuthor;
+    private Author findOrCreateAuthor(String authorName) {
+        return authorsList.stream()
+                .filter(author -> author.getName().equals(authorName))
+                .findFirst()
+                .orElseGet(() -> {
+                    Author newAuthor = new Author(authorName);
+                    authorsList.add(newAuthor);
+                    return newAuthor;
+                });
     }
 
     public void addBook(String authorName, String bookName, Title title, String edition, String dateOfPurchase) {
-        Author author = CreateAuthor(authorName);
+        Author author = findOrCreateAuthor(authorName);
         Book book = new Book(author, bookName, title, edition, dateOfPurchase);
-        addBook(book);
+        addBookToInventory(book);
         author.addBook(book);
     }
 
+    private void addBookToInventory(Book book) {
+        bookInventory.computeIfAbsent(book.getName(), k -> new ArrayList<>()).add(book);
+    }
 
     public List<Author> getAllAuthors() {
         return new ArrayList<>(authorsList);
-    }
-
-    public void addBook(Book book) {
-        bookInventory.computeIfAbsent(book.getName(), k -> new ArrayList<>()).add(book);
     }
 
     public List<Book> getBooksByName(String name) {
@@ -50,7 +47,7 @@ public class Library {
     }
 
     public List<String> getBookIdsByName(String bookName) {
-        return bookInventory.getOrDefault(bookName, Collections.emptyList()).stream()
+        return getBooksByName(bookName).stream()
                 .map(Book::getBookId)
                 .collect(Collectors.toList());
     }
