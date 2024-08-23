@@ -13,13 +13,13 @@ public class LibraryComputer implements LibraryActions {
     private List<Author> authorsList;
     private List<Book> booksList;
     private List<String> bookIdsList;
-    private Set<MemberRecord> membersList;
+    private Set<MemberRecord> membersSet;
 
     @Override
     public void LibrarianActions(Library library, Scanner scanner, Librarian librarian) {
 
         authorsList = library.getAllAuthors();
-        membersList = library.getMemberManager().getAllMembers();
+        membersSet = library.getMemberManager().getAllMembers();
 
         while (true) {
             System.out.println("1. Add a Book");
@@ -114,11 +114,11 @@ public class LibraryComputer implements LibraryActions {
                     }
                     break;
                 case 9:
-                    if (membersList.isEmpty()) {
+                    if (membersSet.isEmpty()) {
                         System.out.println("No members found in the system.");
                     } else {
                         System.out.println("List of Members in the Library:");
-                        membersList.stream()
+                        membersSet.stream()
                                 .sorted(Comparator.comparing(MemberRecord::getName))
                                 .forEach(member -> System.out.println(" - " + member.getName() + " (ID: " + member.getMemberId() + ")"));
                     }
