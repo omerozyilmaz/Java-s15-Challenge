@@ -42,7 +42,7 @@ public class Main {
         scanner.nextLine();
 
         if (userType == 1) {
-            // Kütüphaneci girişi icin yaptim
+
             System.out.print("Please enter your name: ");
             String name = scanner.nextLine().toLowerCase(Locale.ROOT);
             System.out.print("Please enter your password: ");
@@ -54,7 +54,7 @@ public class Main {
                 System.out.println("Incorrect name or password! Exiting...");
             }
         } else if (userType == 2) {
-            // Üye girişi icin
+
             System.out.print("Please enter your member ID: ");
             String memberId = scanner.nextLine();
             MemberRecord member = library.getMemberById(memberId);
