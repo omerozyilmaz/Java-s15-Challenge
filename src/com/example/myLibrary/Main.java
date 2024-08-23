@@ -14,14 +14,12 @@ public class Main {
         LibraryComputer libraryComputer = new LibraryComputer();
         Librarian librarian = new Librarian("Emre", "000");
 
-        // Üyeleri ekleme
         MemberRecord member1 = new MemberRecord("smurfCar", "smurf", Type.STUDENT);
         library.addMember(member1);
         library.addMember(new MemberRecord("Mahmut Manzur", "Manzur", Type.STUDENT));
         library.addMember(new MemberRecord("Berke Asim", "Thaildrin", Type.FACULTY));
         library.addMember(new MemberRecord("Omer Ozyilmaz", "Omerozy21", Type.GRADUATE));
 
-        // Kitapları kütüphaneye ekleme
         library.addBook("J.K. Rowling", "Harry Potter and the Philosopher's Stone", Title.FANTASY, "1st Edition", "1997-06-26");
         library.addBook("George Orwell", "1984", Title.FICTION, "1st Edition", "1949-06-08");
         library.addBook("George Orwell", "1984", Title.FICTION, "1st Edition", "1949-06-08");
@@ -36,16 +34,15 @@ public class Main {
         library.addBook("Markus Zusak", "The Book Thief", Title.FICTION, "1st Edition", "2005-09-01");
         librarian.issueBook(library, "omerozy21","1984");
 
-        // Kullanıcı rolü seçimi
         System.out.println("Please select your role:");
         System.out.println("1. Librarian");
         System.out.println("2. Member");
         System.out.print("Selection: ");
         int userType = scanner.nextInt();
-        scanner.nextLine();  // Buffer temizleme
+        scanner.nextLine();
 
         if (userType == 1) {
-            // Kütüphaneci girişi
+            // Kütüphaneci girişi icin yaptim
             System.out.print("Please enter your name: ");
             String name = scanner.nextLine().toLowerCase(Locale.ROOT);
             System.out.print("Please enter your password: ");
@@ -57,7 +54,7 @@ public class Main {
                 System.out.println("Incorrect name or password! Exiting...");
             }
         } else if (userType == 2) {
-            // Üye girişi
+            // Üye girişi icin
             System.out.print("Please enter your member ID: ");
             String memberId = scanner.nextLine();
             MemberRecord member = library.getMemberById(memberId);
